@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161114174952) do
+ActiveRecord::Schema.define(version: 20161115091453) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookings", force: :cascade do |t|
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.integer  "price"
+    t.integer  "yurt_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_bookings_on_user_id", using: :btree
+    t.index ["yurt_id"], name: "index_bookings_on_yurt_id", using: :btree
+  end
 
   create_table "profiles", force: :cascade do |t|
     t.string   "first_name"
@@ -22,6 +34,24 @@ ActiveRecord::Schema.define(version: 20161114174952) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id", using: :btree
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.text     "description"
+    t.integer  "rating"
+    t.integer  "booking_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["booking_id"], name: "index_reviews_on_booking_id", using: :btree
+  end
+
+  create_table "timeslots", force: :cascade do |t|
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.integer  "yurt_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["yurt_id"], name: "index_timeslots_on_yurt_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -41,5 +71,23 @@ ActiveRecord::Schema.define(version: 20161114174952) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "yurts", force: :cascade do |t|
+    t.text     "description"
+    t.string   "name"
+    t.string   "location"
+    t.integer  "daily_rate"
+    t.string   "shape"
+    t.string   "climate"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["user_id"], name: "index_yurts_on_user_id", using: :btree
+  end
+
+  add_foreign_key "bookings", "users"
+  add_foreign_key "bookings", "yurts"
   add_foreign_key "profiles", "users"
+  add_foreign_key "reviews", "bookings"
+  add_foreign_key "timeslots", "yurts"
+  add_foreign_key "yurts", "users"
 end
