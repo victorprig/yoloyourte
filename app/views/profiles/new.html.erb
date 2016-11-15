@@ -1,0 +1,33 @@
+<h1>Make new profile</h1>
+
+<% if @profile.errors.any? %>
+  <div id="error_explanation">
+    <ul>
+    <% @profile.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
+<%= simple_form_for @profile do |f| %>
+  <%= f.input :first_name, label: 'First Name'%>
+  <%= f.input :last_name, label: 'Last Name'%>
+  <%= f.input :address, label: 'Address'%>
+  <%= f.input :born, label: 'Born'%>
+  <%= f.submit %>
+<% end %>
+
+<%= link_to 'Back', root_path %>
+
+<% if user_signed_in? %>
+  <li>
+  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+  </li>
+<% else %>
+  <li>
+  <%= link_to('Login', new_user_session_path)  %>
+  </li>
+<% end %>
+
