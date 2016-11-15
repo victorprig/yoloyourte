@@ -29,6 +29,13 @@ class ProfilesController < ApplicationController
     params.require(:profile).permit(:first_name, :last_name, :address, :born)
   end
 
+<<<<<<< HEAD
+=======
+  def set_profile
+    @profile = Profile.find(params[:id])
+  end
+  #useless, pour l'instant du moins
+>>>>>>> 2cf7417153f95a00bc1dac90e1495ad718f12db2
 end
 
 
