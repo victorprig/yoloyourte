@@ -1,5 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_action :find_profile, only: [:edit, :show]
 
 
   def new
@@ -30,6 +31,9 @@ class ProfilesController < ApplicationController
     params.require(:profile).permit(:first_name, :last_name, :address, :born)
   end
 
+  def set_profile
+    @profile = Profile.find(params[:id])
+  end
 end
 
 
