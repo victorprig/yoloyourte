@@ -1,4 +1,4 @@
-<% if user_signed_in? %>
+<% if current_user %>
 <%= link_to "See Profile", profile_path(current_user.profile), :method => :get, class: 'btn btn-info full-width' %>
 <%= link_to('Logout', destroy_user_session_path, :method => :delete, class: 'btn btn-info full-width') %>
 <%= link_to "My yurts", yurts_path, class: 'btn btn-info full-width' %>
