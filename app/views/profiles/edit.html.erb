@@ -1,2 +1,31 @@
-<h1>Profile#edit</h1>
-<p>Find me in app/views/profile/edit.html.erb</p>
+<h1>Edit my Profile</h1>
+
+
+<%= simple_form_for current_user.profile do |f| %>
+
+  <div>
+    <%= f.input :first_name, label: 'First Name', placeholder: current_user.profile.first_name %>
+  </div>
+  <hr>
+
+  <div>
+    <%= f.input :last_name, label: 'Last Name', placeholder: current_user.profile.last_name %>
+  </div>
+  <hr>
+
+  <div>
+    <%= f.input :address, label: 'Address', placeholder: current_user.profile.address %>
+  </div>
+  <hr>
+
+  <div>
+    <%= f.input :born, label: 'Born', placeholder: current_user.profile.born %>
+  </div>
+  <hr>
+
+  <div>
+    <%= f.submit %>
+  </div>
+  <hr>
+
+<% end %>
