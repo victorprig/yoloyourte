@@ -1,0 +1,24 @@
+<h1>Yurts#index</h1>
+<p>Find me in app/views/yurts/index.html.erb</p>
+
+<div class=text-center>
+<h1>list of your yurts</h1>
+
+<% current_user.yurts.each do |yurt| %>
+<h2><%= yurt.name %></h2>
+<p> <strong>Description: </strong><%= yurt.description %></p>
+<p><strong>Location: </strong><%= yurt.location %></p>
+<p><strong>Daily price: </strong><%= yurt.daily_rate %></p>
+<p><strong>Shape: </strong><%= yurt.shape %></p>
+<p><strong>Climate: </strong><%= yurt.climate %></p>
+<ul>
+<p><%= link_to "Delete the yurt", yurt_path(yurt),
+method: :delete,
+data: { confirm: "Are you sure?" } %></p>
+<p><%= link_to "See your yurt", yurt_path(yurt) %></p>
+</ul>
+<hr>
+<% end %>
+
+<p><%= link_to "Add new yurt", new_yurt_path %></p>
+</div>
