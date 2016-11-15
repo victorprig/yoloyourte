@@ -26,6 +26,7 @@ class YurtsController < ApplicationController
   def update
     @yurt = Yurt.find(params[:id])
     @yurt.update(yurt_params)
+    redirect_to yurt_path(@yurt)
   end
 
   def edit

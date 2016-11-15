@@ -1,2 +1,21 @@
 <h1>Yurts#edit</h1>
 <p>Find me in app/views/yurts/edit.html.erb</p>
+
+
+<div class=text-center>
+  <div class=container>
+    <div class=row>
+      <div class=col-xs-4>
+        <%= simple_form_for @yurt do |f| %>
+        <%= f.input :name, label: 'Name', placeholder: @yurt.name %>
+        <%= f.input :location, label: 'Location', placeholder: @yurt.location %>
+        <%= f.input :daily_rate, label: 'Daily_rate', placeholder: @yurt.daily_rate %>
+        <%= f.input :shape, label: 'Shape', placeholder: @yurt.shape %>
+        <%= f.input :climate, label: 'Climate', placeholder: @yurt.climate %>
+        <%= f.submit %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
