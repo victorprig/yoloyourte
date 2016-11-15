@@ -20,3 +20,5 @@ Address:  <%= current_user.profile.address %>
 Born:  <%= current_user.profile.last_name %>
 </div>
 <hr>
+
+<%= link_to "Edit Profile", edit_profile_path(current_user.profile), :method => :get, class: 'btn btn-info full-width' %>
