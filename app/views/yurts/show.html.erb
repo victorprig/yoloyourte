@@ -7,11 +7,11 @@
 <p><strong>Daily price: </strong><%= @yurt.daily_rate %></p>
 <p><strong>Shape: </strong><%= @yurt.shape %></p>
 <p><strong>Climate: </strong><%= @yurt.climate %></p>
-<hr>
-<%= link_to "Delete the yurt", yurt_path(@yurt),
+
+<p><%= link_to "Edit your yurt", edit_yurt_path(@yurt) %></p>
+<p><%= link_to "Delete the yurt", yurt_path(@yurt),
 method: :delete,
-data: { confirm: "Are you sure?" } %>
-
-
+data: { confirm: "Are you sure?" } %></p>
+<hr>
 <p><%= link_to "Back to your yurt list", yurts_path %></p>
 

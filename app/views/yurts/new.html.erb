@@ -2,31 +2,31 @@
 <p>Find me in app/views/yurts/new.html.erb</p>
 
 <div class=text-center>
-<div class=container>
-  <div class=row>
+  <div class=container>
+    <div class=row>
     <div class=col-xs-4>
-<h1>Ajoutez une belle yourte</h1>
-<p>Accueillante elle doit être.</p>
-<%= simple_form_for @yurt do |f| %>
-<% if @yurt.errors.any? %>
-<div id="error_explanation">
-  <ul>
-    <% @yurt.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-    <% end %>
-  </ul>
-</div>
-<% end %>
-<%= f.input :name %>
-<%= f.input :description %>
-<%= f.input :location %>
-<%= f.input :daily_rate %>
-<%= f.input :shape %>
-<%= f.input :climate %>
+        <h1>Ajoutez une belle yourte</h1>
+        <p>Accueillante elle doit être.</p>
+        <%= simple_form_for @yurt do |f| %>
+        <% if @yurt.errors.any? %>
+        <div id="error_explanation">
+          <ul>
+            <% @yurt.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+        <% end %>
+        <%= f.input :name %>
+        <%= f.input :description %>
+        <%= f.input :location %>
+        <%= f.input :daily_rate %>
+        <%= f.input :shape %>
+        <%= f.input :climate %>
 
-<%= f.submit "ajoutez une yourte", class: "btn btn-primary" %>
-<% end %>
-</div>
-     </div>
+        <%= f.submit "ajoutez une yourte", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
