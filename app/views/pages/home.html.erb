@@ -5,9 +5,11 @@
 
 <%= link_to "New Profile", new_profile_path, class: 'btn btn-info full-width' %>
 
-<%= link_to "Edit Profile", @profile, :method => :patch, class: 'btn btn-info full-width' %>
 
-<%= link_to "See Profile", @profile, :method => :get, class: 'btn btn-info full-width' %>
+<%= link_to "See Profile", profile_path(current_user.profile), :method => :get, class: 'btn btn-info full-width' %>
+
+<%= link_to "Edit Profile", edit_profile_path(current_user.profile), :method => :get, class: 'btn btn-info full-width' %>
+
 
 
 <% if user_signed_in? %>
