@@ -8,6 +8,7 @@
 <p><strong>Shape: </strong><%= @yurt.shape %></p>
 <p><strong>Climate: </strong><%= @yurt.climate %></p>
 
+<p><%= link_to "Rent my yurt", new_yurt_timeslot_path(@yurt) %></p>
 <p><%= link_to "Edit your yurt", edit_yurt_path(@yurt) %></p>
 <p><%= link_to "Delete the yurt", yurt_path(@yurt),
 method: :delete,

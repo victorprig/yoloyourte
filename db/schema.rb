@@ -48,8 +48,8 @@ ActiveRecord::Schema.define(version: 20161116080756) do
   end
 
   create_table "timeslots", force: :cascade do |t|
-    t.datetime "start_date"
-    t.datetime "end_date"
+    t.date     "start_date"
+    t.date     "end_date"
     t.integer  "yurt_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

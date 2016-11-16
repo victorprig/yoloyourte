@@ -1,7 +1,6 @@
 class YurtsController < ApplicationController
   before_action :authenticate_user!, only: [ :new, :create, :destroy, :update, :edit ]
 
-
   def create
     @yurt = current_user.yurts.build(yurt_params)
     if @yurt.save

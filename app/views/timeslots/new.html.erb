@@ -1,0 +1,29 @@
+<h1>Timeslots#new</h1>
+<p>Find me in app/views/timeslots/new.html.erb</p>
+<div class=text-center>
+  <div class=container>
+    <div class=row>
+      <div class=col-xs-4>
+
+        <%= simple_form_for [@yurt, @timeslot], :url =>  yurt_timeslots_path(@yurt), :method => :post do |f| %>
+        <% if @timeslot.errors.any? %>
+        <div id="error_explanation">
+          <ul>
+            <% @timeslot.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+        <% end %>
+        <%= f.input :start_date, :as => :date_picker%>
+        <%= f.input :end_date, :as => :date_picker %>
+        <%= f.submit "ajoutez une timeslot", class: "btn btn-primary" %>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
