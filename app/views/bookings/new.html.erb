@@ -1,28 +1,40 @@
 <h1>Bookings#new</h1>
 <p>Find me in app/views/bookings/new.html.erb</p>
 
+<% total_cost = @booking.yurt.daily_rate * ((@booking.end_date - @booking.start_date)/3600/24).floor %>
 
-<h2><%= @booking.yurt.name %></h2>
-<p> <strong>Description: </strong><%= @booking.yurt.description %></p>
-<p><strong>Location: </strong><%= @booking.yurt.location %></p>
-<p><strong>Daily price: </strong><%= @booking.yurt.daily_rate %></p>
-<p><strong>Shape: </strong><%= @booking.yurt.shape %></p>
-<p><strong>Climate: </strong><%= @booking.yurt.climate %></p>
-<p><strong>Start Date: </strong><%= @booking.start_date %></p>
-<p><strong>End Date: </strong><%= @booking.end_date %></p>
+<% yurts_bookings_without_new_yurt = @yurt.bookings.where.not(id: nil) %>
 
-<%= simple_form_for [@yurt, @booking], :url => yurt_bookings_path(@yurt), :method => :post do |f| %>
+<% if yurts_bookings_without_new_yurt.all? {|b| (b.start_date > @booking.end_date) || (@booking.start_date > b.end_date) } %>
+    <h2><%= @booking.yurt.name %></h2>
+    <p> <strong>Description: </strong><%= @booking.yurt.description %></p>
+    <p><strong>Location: </strong><%= @booking.yurt.location %></p>
+    <p><strong>Daily price: </strong><%= @booking.yurt.daily_rate %></p>
+    <p><strong>Shape: </strong><%= @booking.yurt.shape %></p>
+    <p><strong>Climate: </strong><%= @booking.yurt.climate %></p>
+    <p><strong>Start Date: </strong><%= @booking.start_date %></p>
+    <p><strong>End Date: </strong><%= @booking.end_date %></p>
+    <p><strong>Total Cost: </strong><%= total_cost %> euros</p>
 
-<%= f.hidden_field :start_date, :value => @booking.start_date %>
-<%= f.hidden_field :end_date, :value => @booking.end_date %>
-<%= f.hidden_field :user_id, :value => current_user.id %>
-<%= f.hidden_field :yurt_id, :value => @booking.yurt_id %>
+    <%= simple_form_for [@yurt, @booking], :url => yurt_bookings_path(@yurt), :method => :post do |f| %>
 
-<%= f.submit "Bookez cette Yourte!", class: "btn btn-primary" %>
+    <%= f.hidden_field :start_date, :value => @booking.start_date %>
+    <%= f.hidden_field :end_date, :value => @booking.end_date %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.hidden_field :yurt_id, :value => @booking.yurt_id %>
+    <%= f.hidden_field :price, :value => total_cost %>
+
+    <%= f.submit "Bookez cette Yourte!", class: "btn btn-primary" %>
+    <% end %>
+
+<% else %>
+    <h2> Sorry, the yurt is booked on these dates <h2>
 <% end %>
+
 
 <ul>
   <p><%= link_to "Back to Yourte", yurt_path(@booking.yurt) %></p>
 </ul>
+
 
 

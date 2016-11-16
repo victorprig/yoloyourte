@@ -14,35 +14,32 @@ data: { confirm: "Are you sure?" } %></p>
 
 
 
-
-<h2>Book This Yurt</h2>
-
-<div class=text-center>
-  <div class=container>
-    <div class=row>
-    <div class=col-xs-4>
-        <%= simple_form_for [@yurt, @booking], :url => new_yurt_booking_path(@yurt), :method => :get do |f| %>
-          <% if @yurt.errors.any? %>
-          <div id="error_explanation">
-            <ul>
-              <% @yurt.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-              <% end %>
-            </ul>
-          </div>
+<% if @yurt.user_id != current_user.id %>
+  <h2>Book This Yurt</h2>
+  <div class=text-center>
+    <div class=container>
+      <div class=row>
+        <div class=col-xs-4>
+          <%= simple_form_for [@yurt, @booking], :url => new_yurt_booking_path(@yurt), :method => :get do |f| %>
+            <% if @yurt.errors.any? %>
+            <div id="error_explanation">
+              <ul>
+                <% @yurt.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+            <% end %>
+          <%= f.input :start_date %>
+          <%= f.input :end_date %>
+          <%= f.hidden_field :yurt_id, :value => @yurt.id %>
+          <%= f.hidden_field :user_id, :value => current_user.id %>
+          <%= f.submit "Check Availability", class: "btn btn-primary" %>
           <% end %>
-        <%= f.input :start_date %>
-        <%= f.input :end_date %>
-        <%= f.hidden_field :yurt_id, :value => @yurt.id %>
-        <%= f.hidden_field :user_id, :value => current_user.id %>
-        <%= f.submit "Check Availability", class: "btn btn-primary" %>
-        <% end %>
+        </div>
       </div>
     </div>
   </div>
-</div>
+  <p><%= link_to "Book this Yurt", yurts_path %></p>
 
-
-
-
-<p><%= link_to "Book this Yurt", yurts_path %></p>
+<% end %>
