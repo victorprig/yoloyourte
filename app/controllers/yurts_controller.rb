@@ -5,7 +5,7 @@ class YurtsController < ApplicationController
   def create
     @yurt = current_user.yurts.build(yurt_params)
     if @yurt.save
-      redirect_to yurt_path(@yurt)
+      redirect_to yurts_path
     else
       render :new
     end
@@ -17,9 +17,14 @@ class YurtsController < ApplicationController
 
   def show
     @yurt = Yurt.find(params[:id])
+    @booking = Booking.new
   end
 
   def index
+    @yurts = Yurt.all
+  end
+
+  def index_all
     @yurts = Yurt.all
   end
 
