@@ -1,19 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'timeslots/show'
-
-  get 'timeslots/edit'
-
-  get 'timeslots/update'
-
-  get 'timeslots/create'
-
-  get 'timeslots/new'
-
-  get 'timeslots/destroy'
-
-  get 'timeslots/index'
-
   devise_for :users, controllers: { registrations: "registrations", omniauth_callbacks: 'users/omniauth_callbacks' }
 
   root to: 'pages#home'
