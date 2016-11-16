@@ -17,15 +17,18 @@ class YurtsController < ApplicationController
 
   def show
     @yurt = Yurt.find(params[:id])
+    @booking = Booking.new
   end
 
   def index
     @yurts = Yurt.all
   end
 
+  def index_all
+    @yurts = Yurt.all
+  end
+
   def update
-    @yurt = Yurt.find(params[:id])
-    @yurt.update(yurt_params)
     redirect_to yurt_path(@yurt)
   end
 
