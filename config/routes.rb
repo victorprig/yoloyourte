@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
+  get 'yurts/index_all', to: 'yurts#index_all'
+
   resources :profiles, only: [:show, :edit, :update, :create, :new]
 
   resources :yurts do
@@ -13,7 +15,7 @@ Rails.application.routes.draw do
     resources :reviews, only: [:show, :index]
   end
 
-  resources :bookings, only: [:show, :index] do
+  resources :bookings, only: [:show, :index, :destroy] do
     resources :reviews, only: [:create, :new]
   end
 
