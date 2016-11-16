@@ -1,7 +1,7 @@
 <h1>Bookings#new</h1>
 <p>Find me in app/views/bookings/new.html.erb</p>
 
-<% total_cost = @booking.yurt.daily_rate * ((@booking.end_date - @booking.start_date)/3600/24).floor %>
+<% total_cost = @booking.yurt.daily_rate * (@booking.end_date - @booking.start_date) %>
 
 <% yurts_bookings_without_new_yurt = @yurt.bookings.where.not(id: nil) %>
 
