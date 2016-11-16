@@ -21,6 +21,7 @@ class BookingsController < ApplicationController
     redirect_to root_path
   end
 
+#aloha
   private
 
   def booking_params
