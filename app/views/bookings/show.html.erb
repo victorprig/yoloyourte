@@ -1,2 +1,27 @@
 <h1>Bookings#show</h1>
 <p>Find me in app/views/bookings/show.html.erb</p>
+
+<div class=text-center>
+  <h1>All Available Yurts (not mine)</h1>
+  <% @yurts.each do |yurt| %>
+    <% if current_user.id != yurt.user_id %>
+      <h2><%= yurt.name %></h2>
+      <strong>Current UserID: </strong><%= current_user.id %></p>
+      <p><strong>Yurt User ID: </strong><%= yurt.user_id %></p>
+      <p><strong>User Name: </strong><%= yurt.user.profile.first_name %> <%= yurt.user.profile.last_name %></p>
+      <p><strong>Description: </strong><%= yurt.description %></p>
+      <p><strong>Location: </strong><%= yurt.location %></p>
+      <p><strong>Daily price: </strong><%= yurt.daily_rate %></p>
+      <p><strong>Shape: </strong><%= yurt.shape %></p>
+      <p><strong>Climate: </strong><%= yurt.climate %></p>
+      <ul>
+        <p><%= link_to "See yurt details", yurt_path(yurt) %></p>
+      </ul>
+    <% end %>
+  <% end %>
+
+  <ul>
+    <p><%= link_to "Back to Home", root_path %></p>
+  </ul>
+</div>
+
