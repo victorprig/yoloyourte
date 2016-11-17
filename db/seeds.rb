@@ -12,7 +12,7 @@ price_range = (1..15).to_a
 userid_range = (1..User.last.id).to_a
 
 (1..50).to_a.each_with_index do |x, index|
-     Yurt.create(
+     yurt = Yurt.create(
         name: Faker::Pokemon.name,
         description:  Faker::Lorem.sentence(3),
         location: Faker::Address.country,
@@ -21,6 +21,17 @@ userid_range = (1..User.last.id).to_a
         climate: climate_list.sample,
         user_id: userid_range.sample,
       )
+     Timeslot.create(
+        start_date: Date.civil(2017, 1, 1),
+        end_date: Date.civil(2017, 7, 1),
+        yurt_id: yurt.id)
+
+     Timeslot.create(
+        start_date: rand(Date.civil(2017, 7, 2)..Date.civil(2017, 7, 31)),
+        end_date: rand(Date.civil(2017, 8, 2)..Date.civil(2017, 9, 1)),
+        yurt_id: yurt.id)
 end
+
+
 
 

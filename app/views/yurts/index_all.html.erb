@@ -11,6 +11,11 @@
       <p><strong>Daily price: </strong><%= yurt.daily_rate %></p>
       <p><strong>Shape: </strong><%= yurt.shape %></p>
       <p><strong>Climate: </strong><%= yurt.climate %></p>
+      <% yurt.timeslots.each do |timeslot| %>
+        <p><strong>Start Date: </strong><%= timeslot.start_date %></p>
+        <p><strong>End Date: </strong><%= timeslot.end_date %></p>
+      <% end %>
+
       <ul>
         <p><%= link_to "See yurt details", yurt_path(yurt) %></p>
       </ul>

@@ -43,4 +43,13 @@ data: { confirm: "Are you sure?" } %></p>
   </div>
   <p><%= link_to "Book this Yurt", yurts_path %></p>
 
+  <h2>Reviews</h2>
+
+
+   <% @yurt.bookings.each do |booking| %>
+     <%= booking.review.description %>
+     <%= booking.review.rating %>
+   <% end %>
+
+
 <% end %>
