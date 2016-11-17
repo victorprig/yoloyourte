@@ -6,8 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-climate_list = ["banquise", "plaine", "désert aride", "forêt vierge", "plage sauvage"]
-shape_list = ["igloo", "yurt", "tente berbere", "hexayurt", "tipi"]
+climate_list = ["Polar", "Plain", "Desert", "Tropical Forest", "Wild Beach"]
+shape_list = ["Igloo", "Yurt", "Berber Tent", "Hexayurt", "Tipi"]
 price_range = (1..15).to_a
 userid_range = (1..User.last.id).to_a
 
