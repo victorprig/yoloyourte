@@ -1,14 +1,14 @@
 <% if current_user %>
-  <% if current_user.token %>
-    <% @profile = current_user.build_profile %>
-    <% @profile.save %>
-  <% end %>
-  <%= link_to "See Profile", profile_path(current_user.profile), :method => :get, class: 'btn btn-info full-width' %>
-  <%= link_to('Logout', destroy_user_session_path, :method => :delete, class: 'btn btn-info full-width') %>
-  <%= link_to "My yurts", yurts_path, class: 'btn btn-info full-width' %>
+<% if current_user.token %>
+<% @profile = current_user.build_profile %>
+<% @profile.save %>
+<% end %>
+<%= link_to "See Profile", profile_path(current_user.profile), :method => :get, class: 'btn btn-info full-width' %>
+<%= link_to('Logout', destroy_user_session_path, :method => :delete, class: 'btn btn-info full-width') %>
+<%= link_to "My yurts", yurts_path, class: 'btn btn-info full-width' %>
 <% else %>
-  <%= link_to('Login', new_user_session_path, class: 'btn btn-info full-width')  %>
-  <%= link_to("Sign Up", new_user_registration_path, :method => :get, class: 'btn btn-info full-width') %>
+<%= link_to('Login', new_user_session_path, class: 'btn btn-info full-width')  %>
+<%= link_to("Sign Up", new_user_registration_path, :method => :get, class: 'btn btn-info full-width') %>
 <% end %>
 
 
@@ -17,3 +17,8 @@
 
 <%= link_to("See YOUR Bookings", bookings_path, class: 'btn btn-info full-width') %>
 
+
+<%= form_tag(yurts_index_all_path, :method => "get", id: "search-form") do %>
+<%= text_field_tag :search, params[:search], placeholder: "Search Yurts" %>
+<%= submit_tag "Search" %>
+<% end %>

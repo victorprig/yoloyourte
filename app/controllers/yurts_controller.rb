@@ -19,12 +19,17 @@ class YurtsController < ApplicationController
     @booking = Booking.new
   end
 
-  def index
-    @yurts = Yurt.all
-  end
+def index
+  @yurts = Yurt.all
+end
 
   def index_all
     @yurts = Yurt.all
+  if params[:search]
+    @yurts = Yurt.search(params[:search]).order("created_at DESC")
+  else
+    @yurts = Yurt.all.order('created_at DESC')
+  end
   end
 
   def update
