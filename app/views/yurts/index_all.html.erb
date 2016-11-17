@@ -1,29 +1,25 @@
 <div class=text-center>
   <h1>All Available Yurts (not mine)</h1>
-  <% @yurts.each do |yurt| %>
-    <% if current_user.id != yurt.user_id %>
-      <h2><%= yurt.name %></h2>
-      <strong>Current UserID: </strong><%= current_user.id %></p>
-      <p><strong>Yurt User ID: </strong><%= yurt.user_id %></p>
-      <p><strong>User Name: </strong><%= yurt.user.profile.first_name %> <%= yurt.user.profile.last_name %></p>
-      <p><strong>Description: </strong><%= yurt.description %></p>
-      <p><strong>Location: </strong><%= yurt.location %></p>
-      <p><strong>Daily price: </strong><%= yurt.daily_rate %></p>
-      <p><strong>Shape: </strong><%= yurt.shape %></p>
-      <p><strong>Climate: </strong><%= yurt.climate %></p>
-      <% yurt.timeslots.each do |timeslot| %>
-        <p><strong>Start Date: </strong><%= timeslot.start_date %></p>
-        <p><strong>End Date: </strong><%= timeslot.end_date %></p>
-      <% end %>
-
-      <ul>
-        <p><%= link_to "See yurt details", yurt_path(yurt) %></p>
-      </ul>
-    <% end %>
-  <% end %>
 
   <ul>
     <p><%= link_to "Back to Home", root_path %></p>
   </ul>
+
+  <% @yurts.each do |yurt| %>
+
+
+    <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(<%= cl_image_path yurt.photo, height: 300, width: 1200, crop: :fill %>);">
+      <div class="card-category">
+        <h1><%= yurt.shape %></h1>
+      </div>
+      <div class="card-description">
+        <h1><%= yurt.location %></h1>
+        <h2><%= yurt.climate %></h2>
+      </div>
+      <%= link_to "", yurt_path(yurt), class: "card-link" %>
+    </div>
+
+  <% end %>
+
 </div>
 
