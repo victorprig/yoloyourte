@@ -3,9 +3,9 @@
 
 <% total_cost = @booking.yurt.daily_rate * (@booking.end_date - @booking.start_date) %>
 
-<% yurts_bookings_without_new_yurt = @yurt.bookings.where.not(id: nil) %>
+<% ybny = @yurt.bookings.where.not(id: nil) %>
 
-<% if yurts_bookings_without_new_yurt.all? {|b| (b.start_date > @booking.end_date) || (@booking.start_date > b.end_date) } %>
+<% if (ybny.nil? || ybny.all? {|b| (b.start_date >= @booking.end_date) || (@booking.start_date >= b.end_date) }) && (@yurt.timeslots.any? {|t| (t.start_date <= @booking.start_date) && (t.end_date >= @booking.end_date) }) %>
     <h2><%= @booking.yurt.name %></h2>
     <p> <strong>Description: </strong><%= @booking.yurt.description %></p>
     <p><strong>Location: </strong><%= @booking.yurt.location %></p>
