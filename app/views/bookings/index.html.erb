@@ -17,6 +17,12 @@
     <p><%= link_to "Delete the booking", booking_path(booking),
           method: :delete, data: { confirm: "Are you sure?" } %></p>
 
+    <%= simple_form_for [booking, @review], :url => booking_reviews_path(booking), :method => :post do |f| %>
+      <%= f.input :description %>
+      <%= f.input :rating, collection: 0..5 %>
+      <%= f.submit "Submit Review", class: "btn btn-primary" %>
+    <% end %>
+
   <% end %>
 </div>
 
