@@ -11,6 +11,21 @@ shape_list = ["igloo", "yurt", "tente berbere", "hexayurt", "tipi"]
 price_range = (1..15).to_a
 userid_range = (1..User.last.id).to_a
 
+yurt_urls = [
+'http://bit.ly/2eJzET5',
+'http://bit.ly/2g0ncy6',
+'http://bit.ly/2fIJvW0',
+'http://bit.ly/2fzPFdI',
+'http://bit.ly/2g0lPiQ',
+'http://bit.ly/2fzPGOO',
+'http://bit.ly/2f7HhBu',
+'http://bit.ly/2g1HS6T',
+'http://bit.ly/2f3L3sf',
+'http://bit.ly/2fzOSsW',
+'http://bit.ly/2fZ7eko',
+'http://bit.ly/2f7K2CJ']
+
+
 (1..50).to_a.each_with_index do |x, index|
      yurt = Yurt.create(
         name: Faker::Pokemon.name,
@@ -21,6 +36,11 @@ userid_range = (1..User.last.id).to_a
         climate: climate_list.sample,
         user_id: userid_range.sample,
       )
+
+     yurt.remote_photo_url = yurt_urls.sample
+
+     yurt.save
+
      Timeslot.create(
         start_date: Date.civil(2017, 1, 1),
         end_date: Date.civil(2017, 7, 1),

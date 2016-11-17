@@ -3,6 +3,7 @@ class Yurt < ApplicationRecord
   has_many :bookings, dependent: :destroy
   has_many :timeslots, dependent: :destroy
   has_many :reviews, through: :bookings, dependent: :destroy
+  mount_uploader :photo, PhotoUploader
 
 def self.search(search)
   where("climate LIKE ?", "%#{search}%")

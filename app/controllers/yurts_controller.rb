@@ -51,7 +51,7 @@ end
   private
 
   def yurt_params
-    params.require(:yurt).permit(:name, :description, :location, :daily_rate, :shape, :climate, :user_id)
+    params.require(:yurt).permit(:name, :description, :location, :daily_rate, :shape, :climate, :user_id, :photo_cache)
   end
 
 end

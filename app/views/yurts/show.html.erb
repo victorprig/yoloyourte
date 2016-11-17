@@ -1,4 +1,6 @@
 <h2><%= @yurt.name %></h2>
+
+<%= cl_image_tag @yurt.photo, height: 300, width: 400, crop: :fill %>
 <p> <strong>Description: </strong><%= @yurt.description %></p>
 <p><strong>Location: </strong><%= @yurt.location %></p>
 <p><strong>Daily price: </strong><%= @yurt.daily_rate %></p>
@@ -45,11 +47,11 @@ data: { confirm: "Are you sure?" } %></p>
 
   <h2>Reviews</h2>
 
-
    <% @yurt.bookings.each do |booking| %>
+    <% if !(booking.review.nil?) %>
      <%= booking.review.description %>
      <%= booking.review.rating %>
+    <% end %>
    <% end %>
-
 
 <% end %>
