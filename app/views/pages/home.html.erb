@@ -19,6 +19,10 @@
 
 
 <%= form_tag(yurts_index_all_path, :method => "get", id: "search-form") do %>
-<%= text_field_tag :search, params[:search], placeholder: "Search Yurts" %>
-<%= submit_tag "Search" %>
+
+<%= select_tag( 'searchclimate', options_from_collection_for_select(Yurt.all.select('distinct climate'), "climate", "climate", '1')) %>
+<%= select_tag( 'searchshape', options_from_collection_for_select(Yurt.all.select('distinct shape'), "shape", "shape", 1)) %>
+
+<%= submit_tag "Find my dream yurt" %>
 <% end %>
+
