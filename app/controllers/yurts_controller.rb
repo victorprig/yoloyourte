@@ -25,8 +25,8 @@ end
 
   def index_all
     @yurts = Yurt.all
-  if params[:search]
-    @yurts = Yurt.search(params[:search]).order("created_at DESC")
+  if params[:searchclimate] && params[:searchshape]
+    @yurts = Yurt.searchyurt(params[:searchclimate], params[:searchshape]).order("created_at DESC")
   else
     @yurts = Yurt.all.order('created_at DESC')
   end
