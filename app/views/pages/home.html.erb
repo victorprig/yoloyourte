@@ -1,15 +1,15 @@
 
-<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url(<%= cl_image_path 'http://bit.ly/2eKmrJK' %>>);">
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url(<%= cl_image_path 'http://bit.ly/2eKmrJK' %>);">
   <div class="banner-content">
     <%= render "shared/navbar" %>
     <h1>YoloYourte</h1>
     <p>Dites adieu à la civilisation et revenez aux origines.</p>
     <ul>
       <a>
-        <p><%= form_tag(yurts_index_all_path, :method => "get", id: "search-form") do %></p>
-        <p><%= select_tag( 'searchclimate', options_from_collection_for_select(Yurt.all.select('distinct climate'), "climate", "climate", '1')) %></p>
-        <p><%= select_tag( 'searchshape', options_from_collection_for_select(Yurt.all.select('distinct shape'), "shape", "shape", 1)) %></p>
-        <p><%= submit_tag("Find my dream yurt", class: 'btn btn-primary full-width') %></p>
+        <p><%= form_tag(yurts_index_all_path, :method => "get", id: "search-form", class: "search-form-home") do %></p>
+        <p><%= select_tag( 'searchclimate', options_from_collection_for_select(Yurt.all.select('distinct climate'), "climate", "climate", '1'), :prompt => "Chose your environment", class: "select_tag_home") %></p>
+        <p><%= select_tag( 'searchshape', options_from_collection_for_select(Yurt.all.select('distinct shape'), "shape", "shape", 1), :prompt => "Chose your yurt shape", class: "select_tag_home select_tag_shape") %></p>
+        <p><%= submit_tag("Find my dream yurt", class: 'btn btn-primary full-width blue-home-button') %></p>
         <% end %>
       </a>
     </ul>
@@ -17,6 +17,30 @@
 </div>
 
 
+<div class="banner">
+  <div class="container">
+    <div class="row color-font">
+      <div class="col-xs-4">
+        <%= image_tag "light-bulb.png", class: "home-icon" %>
+        <h3> We find original places.</h3>
+        <p class="color-font font-size-changes" style="color: black;">Fed up with holidays in regular hotels or appartments? Go away from civilization and stay in a primitive housing. We give you any environment and housing options you like.</p>
+      </div>
+      <div class="col-xs-4">
+        <%= image_tag "circus-tent.png", class: "home-icon" %>
+        <h3> Book your yurt.</h3>
+        <p class="color-font font-size-changes" style="color: black;">We worked hard to provide you with a selection of the most suprizing primitive housing. Find your dream yurt and book it in a couple of seconds.</p>
+      </div>
+      <div class="col-xs-4">
+        <%= image_tag "takeoff-the-plane.png", class: "home-icon" %>
+        <h3> Go to the wild side.</h3>
+        <p class="color-font font-size-changes" style="color: black;">Fly away from your stressful life. No luggage required,  your good old gameboy color. Careful with snakes and crocodiles!</p>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% if Yurt.all != [] %>
 <div class="container">
   <div class="row no-gutter">
     <div class="col-xs-6">
@@ -61,6 +85,5 @@
     </div>
   </div>
 </div>
-</div>
-</div>
+<%end%>
 
