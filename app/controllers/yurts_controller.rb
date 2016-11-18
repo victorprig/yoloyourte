@@ -27,7 +27,7 @@ end
 
   def index_all
 
-    if params[:searchclimate] || params[:searchshape]
+    if params[:searchclimate] && params[:searchshape]
       @yurts = Yurt.searchyurt(params[:searchclimate], params[:searchshape]).order("created_at DESC")
       @hash = Gmaps4rails.build_markers(@yurts) do |yurt, marker|
       marker.lat yurt.latitude
