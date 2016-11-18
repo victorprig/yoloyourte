@@ -15,7 +15,9 @@
     <%= link_to("My bookings", bookings_path, class: 'btn btn-info full-width navbarbutton')%>
 
     <!-- my profile -->
-    <%= link_to "My Profile", profile_path(current_user.profile), :method => :get, class: 'btn btn-info full-width navbarbutton'%>
+    <% if !(current_user.profile.nil?) %>
+      <%= link_to "My Profile", profile_path(current_user.profile), :method => :get, class: 'btn btn-info full-width navbarbutton'%>
+    <% end %>
     <!-- logout button -->
     <%= link_to('Logout', destroy_user_session_path, :method => :delete, class: 'btn btn-info full-width navbarbutton') %>
     <!-- Notification -->

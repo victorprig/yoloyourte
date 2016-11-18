@@ -13,7 +13,7 @@
   <div class="row">
     <div class="col-xs-6">
       <%= cl_image_tag @yurt.photo, height: 300, width: 400, crop: :fill %>
-      <% if @yurt.user_id = current_user.id %>
+      <% if @yurt.user_id == current_user.id %>
         <div class="list-inline buttons-container">
           <p><%= link_to "Rent my yurt", new_yurt_timeslot_path(@yurt), class: 'btn btn-primary full-width aligner'%></p>
           <p><%= link_to "Edit your yurt", edit_yurt_path(@yurt), class: 'btn btn-primary full-width aligner'%></p>
