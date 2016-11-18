@@ -9,27 +9,39 @@
   <% end %>
 <% end %>
 
-<%= cl_image_tag @yurt.photo, height: 300, width: 400, crop: :fill %>
-<p> <strong>Description: </strong><%= @yurt.description %></p>
-<p><strong>Location: </strong><%= @yurt.location %></p>
-<p><strong>Daily price: </strong><%= @yurt.daily_rate %></p>
-<p><strong>Shape: </strong><%= @yurt.shape %></p>
-<p><strong>Climate: </strong><%= @yurt.climate %></p>
-
-<p><%= link_to "Rent my yurt", new_yurt_timeslot_path(@yurt) %></p>
-<p><%= link_to "Edit your yurt", edit_yurt_path(@yurt) %></p>
-<p><%= link_to "Delete the yurt", yurt_path(@yurt),
-method: :delete,
-data: { confirm: "Are you sure?" } %></p>
-<hr>
-<p><%= link_to "Back to your yurt list", yurts_path %></p>
-
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6">
+      <%= cl_image_tag @yurt.photo, height: 300, width: 400, crop: :fill %>
+      <% if @yurt.user_id = current_user.id %>
+        <div class="list-inline buttons-container">
+          <p><%= link_to "Rent my yurt", new_yurt_timeslot_path(@yurt), class: 'btn btn-primary full-width aligner'%></p>
+          <p><%= link_to "Edit your yurt", edit_yurt_path(@yurt), class: 'btn btn-primary full-width aligner'%></p>
+          <p><%= link_to "Delete the yurt", yurt_path(@yurt), class: 'btn btn-primary full-width aligner', method: :delete, data: { confirm: "Are you sure?" } %></p>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-xs-6">
+      <h4> <strong>Description: </strong> </h4>
+      <p><%= @yurt.description %></p>
+      <h4> <strong>Location: </strong> </h4>
+      <p><%= @yurt.location %></p>
+      <h4> <strong>Daily Rate: </strong> </h4>
+      <p><%= @yurt.daily_rate %> Euros</p>
+      <h4> <strong>Shape: </strong> </h4>
+      <p><%= @yurt.shape %></p>
+      <h4> <strong>Climate: </strong> </h4>
+      <p><%= @yurt.climate %></p>
+      <p><%= link_to "Back to your yurt list", yurts_path %></p>
+    </div>
+  </div>
+</div>
 
 
 <% if @yurt.user_id != current_user.id %>
-  <h2>Book This Yurt</h2>
-  <div class=text-center>
-    <div class=container>
+  <div class="text-center booking-container">
+  <h3>Book This Yurt</h3>
+    <div class="container">
       <div class=row>
         <div class=col-xs-4>
           <%= simple_form_for [@yurt, @booking], :url => new_yurt_booking_path(@yurt), :method => :get do |f| %>
@@ -43,16 +55,22 @@ data: { confirm: "Are you sure?" } %></p>
             </div>
             <% end %>
           <%= f.input :start_date %>
+        </div>
+        <div class="col-xs-4">
           <%= f.input :end_date %>
           <%= f.hidden_field :yurt_id, :value => @yurt.id %>
           <%= f.hidden_field :user_id, :value => current_user.id %>
+        </div>
+        <div class="col-xs-4">
+          <h1></h1>
+          <p></p>
           <%= f.submit "Check Availability", class: "btn btn-primary" %>
           <% end %>
+        </div>
         </div>
       </div>
     </div>
   </div>
-  <p><%= link_to "Book this Yurt", yurts_path %></p>
 
   <h2>Reviews</h2>
 
