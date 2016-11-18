@@ -17,6 +17,8 @@ class YurtsController < ApplicationController
   def show
     @yurt = Yurt.find(params[:id])
     @booking = Booking.new
+    @alert_message = "You are viewing #{@yurt.name}"
+    @yurt_coordinates = { lat: @yurt.latitude, lng: @yurt.longitude }
   end
 
 def index
@@ -24,12 +26,20 @@ def index
 end
 
   def index_all
-    @yurts = Yurt.all
-  if params[:searchclimate] && params[:searchshape]
-    @yurts = Yurt.searchyurt(params[:searchclimate], params[:searchshape]).order("created_at DESC")
-  else
-    @yurts = Yurt.all.order('created_at DESC')
-  end
+
+    @yurts = Yurt.where.not(latitude: nil, longitude: nil)
+
+    @hash = Gmaps4rails.build_markers(@yurts) do |yurt, marker|
+      marker.lat yurt.latitude
+      marker.lng yurt.longitude
+      # marker.infowindow render_to_string(partial: "/yurts/map_box", locals: { yurt: flat })
+    end
+
+    if params[:searchclimate] && params[:searchshape]
+      @yurts = Yurt.searchyurt(params[:searchclimate], params[:searchshape]).order("created_at DESC")
+    else
+      @yurts = Yurt.all.order('created_at DESC')
+    end
   end
 
   def update

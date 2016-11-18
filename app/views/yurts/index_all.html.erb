@@ -5,19 +5,40 @@
     <p><%= link_to "Back to Home", root_path %></p>
   </ul>
 
+  <div id="map" style="width: 100%; height: 300px;"></div>
+
+  <% content_for(:after_js) do %>
+    <%= javascript_tag do %>
+      $(document).ready(function() {
+        var handler = Gmaps.build('Google');
+        handler.buildMap({ internal: { id: 'map' } }, function() {
+          markers = handler.addMarkers(<%= raw @hash.to_json %>);
+          handler.bounds.extendWith(markers);
+          handler.fitMapToBounds();
+          if (markers.length == 0) {
+            handler.getMap().setZoom(2);
+          } else if (markers.length == 1) {
+            handler.getMap().setZoom(14);
+          }
+        });
+      });
+    <% end %>
+  <% end %>
+
   <% @yurts.each do |yurt| %>
 
-
-    <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(<%= cl_image_path yurt.photo, height: 300, width: 1200, crop: :fill %>);">
-      <div class="card-category">
-        <h1><%= yurt.shape %></h1>
+    <% if yurt[:photo] %>
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(<%= cl_image_path yurt.photo, height: 300, width: 1200, crop: :fill %>);">
+        <div class="card-category">
+          <h1><%= yurt.shape %></h1>
+        </div>
+        <div class="card-description">
+          <h1><%= yurt.location %></h1>
+          <h2><%= yurt.climate %></h2>
+        </div>
+        <%= link_to "", yurt_path(yurt), class: "card-link" %>
       </div>
-      <div class="card-description">
-        <h1><%= yurt.location %></h1>
-        <h2><%= yurt.climate %></h2>
-      </div>
-      <%= link_to "", yurt_path(yurt), class: "card-link" %>
-    </div>
+    <% end %>
 
   <% end %>
 
