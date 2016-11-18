@@ -8,7 +8,7 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.create(booking_params)
-    redirect_to root_path
+    redirect_to bookings_path
   end
 
   def index
