@@ -42,7 +42,7 @@ yurt_urls = [
 
 
 
-(1..50).to_a.each_with_index do |x, index|
+(1..100).to_a.each_with_index do |x, index|
      yurt = Yurt.create(
         name: Faker::Pokemon.name,
         description:  Faker::Lorem.sentence(3),

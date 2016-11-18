@@ -1,74 +1,61 @@
-
-<h1>Booking Index</h1>
-
-<div class=text-center>
-  <h1>List of your Bookings</h1>
-  <div class="container">
-    <div class="row">
-    <% current_user.bookings.each do |booking| %>
-      <% if booking.yurt[:photo] %>
-          <div class="col-xs-6">
-            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(<%= cl_image_path yurt.photo, height: 300, width: 500, crop: :scale %>);">
-              <div class="card-category">
-                <%= booking.yurt.shape %></h1>
-              </div>
-              <div class="card-description">
-                <h1><%= booking.yurt.location %></h1>
-                <h2><%= booking.yurt.climate %></h2>
+<%if current_user.bookings != [] %>
+  <div class=text-center>
+    <h1>List of your Bookings</h1>
+    <div class="container padded">
+      <div class="row">
+      <% current_user.bookings.each do |booking| %>
+        <% if booking.yurt[:photo] %>
+            <div class="col-xs-6">
+              <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(<%= cl_image_path booking.yurt.photo, height: 300, width: 500, crop: :scale %>);">
+                <div class="card-category">
+                  <%= booking.yurt.shape %></h1>
+                </div>
+                <div class="card-description">
+                  <h1><%= booking.yurt.location %></h1>
+                  <h2><%= booking.yurt.climate %></h2>
+                </div>
               </div>
             </div>
-            <%= link_to "", yurt_path(yurt), class: "card-link" %>
+        <% end %>
+
+
+          <div class="col-xs-6">
+            <h4> <strong>Description: </strong> </h4>
+            <p><%= booking.yurt.description %></p>
+            <h4> <strong>Location: </strong> </h4>
+            <p><%= booking.yurt.location %></p>
+            <h4> <strong>Daily price: </strong> </h4>
+            <p><%= booking.yurt.daily_rate %> Euros </p>
+            <h4> <strong>Climate: </strong> </h4>
+            <p><%= booking.yurt.climate %></p>
+            <h4> <strong>Start Date: </strong> </h4>
+            <p><%= booking.start_date %></p>
+            <h4> <strong>End Date: </strong> </h4>
+            <p><%= booking.end_date %></p>
+            <p><%= link_to "Delete the booking", booking_path(booking),
+              method: :delete, data: { confirm: "Are you sure?" } %></p>
           </div>
+
+      </div>
+    </div>
+
+    <div class="container padded">
+
+        <%= simple_form_for [booking, @review], :url => booking_reviews_path(booking), :method => :post do |f| %>
+         <%= f.input :description %>
+         <%= f.input :rating, collection: 0..5 %>
+         <%= f.submit "Submit Review", class: "btn btn-primary" %>
+        <% end %>
+    </div>
+
       <% end %>
-
-
-
-      <h2><%= booking.yurt.name %></h2>
-      <p> <strong>Description: </strong><%= booking.yurt.description %></p>
-      <p><strong>Location: </strong><%= booking.yurt.location %></p>
-      <p><strong>Daily price: </strong><%= booking.yurt.daily_rate %></p>
-      <p><strong>Shape: </strong><%= booking.yurt.shape %></p>
-      <p><strong>Climate: </strong><%= booking.yurt.climate %></p>
-      <p><strong>Start Date: </strong><%= booking.start_date %></p>
-      <p><strong>End Date: </strong><%= booking.end_date %></p>
-      <p><strong>Price: </strong><%= booking.price %> euros</p>
-
-      <p><%= link_to "Delete the booking", booking_path(booking),
-            method: :delete, data: { confirm: "Are you sure?" } %></p>
-
-      <%= simple_form_for [booking, @review], :url => booking_reviews_path(booking), :method => :post do |f| %>
-       <%= f.input :description %>
-       <%= f.input :rating, collection: 0..5 %>
-       <%= f.submit "Submit Review", class: "btn btn-primary" %>
-      <% end %>
-
-    <% end %>
+      </div>
     </div>
   </div>
-</div>
+<% else %>
+  <h1> YOU GOT NO BOOKINGS BRUV </h1>
+<% end %>
 
 <ul>
   <p><%= link_to "Back to Home", root_path %></p>
 </ul>
-
-
-
-    <div class="row">
-      <% @yurts.each do |yurt| %>
-        <% if yurt[:photo] %>
-          <div class="col-xs-6">
-            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(<%= cl_image_path yurt.photo, height: 300, width: 500, crop: :scale %>);">
-              <div class="card-category">
-                <%= yurt.shape %></h1>
-              </div>
-              <div class="card-description">
-                <h1><%= yurt.location %></h1>
-                <h2><%= yurt.climate %></h2>
-              </div>
-            </div>
-            <%= link_to "", yurt_path(yurt), class: "card-link" %>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
