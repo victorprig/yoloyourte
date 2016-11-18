@@ -1,20 +1,29 @@
 <div class=text-center>
   <h1>My Yurts</h1>
-  <p><%= link_to "Add new yurt", new_yurt_path %></p>
-  <hr>
-  <% current_user.yurts.each do |yurt| %>
-  <h2><%= yurt.name %></h2>
-  <p> <strong>Description: </strong><%= yurt.description %></p>
-  <p><strong>Location: </strong><%= yurt.location %></p>
-  <p><strong>Daily price: </strong><%= yurt.daily_rate %></p>
-  <p><strong>Shape: </strong><%= yurt.shape %></p>
-  <p><strong>Climate: </strong><%= yurt.climate %></p>
-  <ul>
-    <p><%= link_to "See your yurt", yurt_path(yurt) %></p>
-  </ul>
-  <% end %>
 </div>
 
 <ul>
   <p><%= link_to "Back to Home", root_path %></p>
 </ul>
+
+<div class="container">
+    <div class="row">
+      <% current_user.yurts.each do |yurt| %>
+          <% if yurt[:photo] %>
+            <div class="col-xs-6">
+              <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(<%= cl_image_path yurt.photo, height: 300, width: 500, crop: :scale %>);">
+                <div class="card-category">
+                  <%= yurt.shape %></h1>
+                </div>
+                <div class="card-description">
+                  <h1><%= yurt.location %></h1>
+                  <h2><%= yurt.climate %></h2>
+                </div>
+              </div>
+              <%= link_to "", yurt_path(yurt), class: "card-link" %>
+            </div>
+          <% end %>
+      <% end %>
+    </div>
+  </div>
+
