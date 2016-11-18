@@ -1,18 +1,18 @@
 
 <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url(<%= cl_image_path 'http://bit.ly/2eKmrJK' %>>);">
   <div class="banner-content">
-  <%= render "shared/navbar" %>
+    <%= render "shared/navbar" %>
     <h1>YoloYourte</h1>
     <p>Dites adieu à la civilisation et revenez aux origines.</p>
     <ul>
-    <a>
-    <p><%= form_tag(yurts_index_all_path, :method => "get", id: "search-form") do %></p>
-  <p><%= select_tag( 'searchclimate', options_from_collection_for_select(Yurt.all.select('distinct climate'), "climate", "climate", '1')) %></p>
- <p><%= select_tag( 'searchshape', options_from_collection_for_select(Yurt.all.select('distinct shape'), "shape", "shape", 1)) %></p>
- <p><%= submit_tag("Find my dream yurt", class: 'btn btn-primary full-width') %></p>
-<% end %>
-</a>
-</ul>
+      <a>
+        <p><%= form_tag(yurts_index_all_path, :method => "get", id: "search-form") do %></p>
+        <p><%= select_tag( 'searchclimate', options_from_collection_for_select(Yurt.all.select('distinct climate'), "climate", "climate", '1')) %></p>
+        <p><%= select_tag( 'searchshape', options_from_collection_for_select(Yurt.all.select('distinct shape'), "shape", "shape", 1)) %></p>
+        <p><%= submit_tag("Find my dream yurt", class: 'btn btn-primary full-width') %></p>
+        <% end %>
+      </a>
+    </ul>
   </div>
 </div>
 
@@ -22,42 +22,45 @@
     <div class="col-xs-6">
       <div class="photo-cont-tall" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= cl_image_path @yurts.sample.photo, height: 300, width: 600, crop: :scale %>)">
       </div>
-      <div class="col-xs-6">
-        <div class="row">
-          <div class="col-xs-6">
-            <div class="photo-cont-slim-top" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(<%= cl_image_path @yurts.sample.photo, height: 150, width: 300, crop: :scale %>)">
-            </div>
-          </div>
-          <div class="col-xs-6">
-            <div class="photo-cont-slim-top" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(<%= cl_image_path @yurts.sample.photo, height: 150, width: 300, crop: :scale %>)">
-            </div>
+    </div>
+    <div class="col-xs-6">
+      <div class="row">
+        <div class="col-xs-6">
+          <div class="photo-cont-slim-top" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(<%= cl_image_path @yurts.sample.photo, height: 150, width: 300, crop: :scale %>)">
           </div>
         </div>
-        <div class="row">
-          <div class="col-xs-6">
-            <div class="photo-cont-slim-bottom" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(<%= cl_image_path @yurts.sample.photo, height: 150, width: 300, crop: :scale %>)">
-            </div>
-          </div>
-          <div class="col-xs-6">
-            <div class="photo-cont-slim-bottom" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(<%= cl_image_path @yurts.sample.photo, height: 150, width: 300, crop: :scale %>)">
-            </div>
+        <div class="col-xs-6">
+          <div class="photo-cont-slim-top" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(<%= cl_image_path @yurts.sample.photo, height: 150, width: 300, crop: :scale %>)">
           </div>
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-4">
-          <div class="photo-cont-slim-bottom3" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(<%= cl_image_path @yurts.sample.photo, height: 225, width: 400, crop: :scale %>)">
+        <div class="col-xs-6">
+          <div class="photo-cont-slim-bottom" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(<%= cl_image_path @yurts.sample.photo, height: 150, width: 300, crop: :scale %>)">
           </div>
         </div>
-        <div class="col-xs-4">
-          <div class="photo-cont-slim-bottom2" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(<%= cl_image_path @yurts.sample.photo, height: 225, width: 400, crop: :scale %>)">
+        <div class="col-xs-6">
+          <div class="photo-cont-slim-bottom" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(<%= cl_image_path @yurts.sample.photo, height: 150, width: 300, crop: :scale %>)">
           </div>
         </div>
-        <div class="col-xs-4">
-          <div class="photo-cont-slim-bottom4" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(<%= cl_image_path @yurts.sample.photo, height: 225, width: 400, crop: :scale %>)">
-          </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-4">
+        <div class="photo-cont-slim-bottom3" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(<%= cl_image_path @yurts.sample.photo, height: 225, width: 400, crop: :scale %>)">
+        </div>
+      </div>
+      <div class="col-xs-4">
+        <div class="photo-cont-slim-bottom2" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(<%= cl_image_path @yurts.sample.photo, height: 225, width: 400, crop: :scale %>)">
+        </div>
+      </div>
+      <div class="col-xs-4">
+        <div class="photo-cont-slim-bottom4" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(<%= cl_image_path @yurts.sample.photo, height: 225, width: 400, crop: :scale %>)">
         </div>
       </div>
     </div>
   </div>
 </div>
+</div>
+</div>
+
