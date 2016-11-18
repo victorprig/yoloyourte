@@ -2,10 +2,6 @@
   <h1>My Yurts</h1>
 </div>
 
-<ul>
-  <p><%= link_to "Back to Home", root_path %></p>
-</ul>
-
 <div class="container">
     <div class="row">
       <% current_user.yurts.each do |yurt| %>
@@ -22,8 +18,11 @@
               </div>
               <%= link_to "", yurt_path(yurt), class: "card-link" %>
             </div>
+          <% else %>
+            <p> Pas de tof <p>
           <% end %>
       <% end %>
     </div>
   </div>
 
+<%= link_to "Add a Yurt!", new_yurt_path, class: "btn btn-info text-center" %>

@@ -9,13 +9,13 @@
 
     <div class="container">
       <div class="row">
-        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(<%= cl_image_path booking.yurt.photo, height: 300, width: 500, crop: :scale %>);">
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(<%= cl_image_path @booking.yurt.photo, height: 300, width: 500, crop: :scale %>);">
             <div class="card-category">
-              <%= booking.yurt.shape %></h1>
+              <%= @booking.yurt.shape %></h1>
             </div>
             <div class="card-description">
-              <h1><%= booking.yurt.location %></h1>
-              <h2><%= booking.yurt.climate %></h2>
+              <h1><%= @booking.yurt.location %></h1>
+              <h2><%= @booking.yurt.climate %></h2>
           </div>
         </div>
         <div class="col-xs-6">
@@ -32,18 +32,6 @@
         </div>
       </div>
     </div>
-
-
- <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(<%= cl_image_path booking.yurt.photo, height: 300, width: 500, crop: :scale %>);">
-                <div class="card-category">
-                  <%= booking.yurt.shape %></h1>
-                </div>
-                <div class="card-description">
-                  <h1><%= booking.yurt.location %></h1>
-                  <h2><%= booking.yurt.climate %></h2>
-                </div>
-              </div>
-
 
 
     <%= simple_form_for [@yurt, @booking], :url => yurt_bookings_path(@yurt), :method => :post do |f| %>

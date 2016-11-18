@@ -27,20 +27,25 @@ end
 
   def index_all
 
-    @yurts = Yurt.where.not(latitude: nil, longitude: nil)
-
-    @hash = Gmaps4rails.build_markers(@yurts) do |yurt, marker|
+    if params[:searchclimate] || params[:searchshape]
+      @yurts = Yurt.searchyurt(params[:searchclimate], params[:searchshape]).order("created_at DESC")
+      @hash = Gmaps4rails.build_markers(@yurts) do |yurt, marker|
       marker.lat yurt.latitude
       marker.lng yurt.longitude
       # marker.infowindow render_to_string(partial: "/yurts/map_box", locals: { yurt: flat })
     end
-
-    if params[:searchclimate] && params[:searchshape]
-      @yurts = Yurt.searchyurt(params[:searchclimate], params[:searchshape]).order("created_at DESC")
     else
       @yurts = Yurt.all.order('created_at DESC')
+      @hash = Gmaps4rails.build_markers(@yurts) do |yurt, marker|
+      marker.lat yurt.latitude
+      marker.lng yurt.longitude
+      # marker.infowindow render_to_string(partial: "/yurts/map_box", locals: { yurt: flat })
+    end
     end
   end
+
+
+
 
   def update
     @yurt = Yurt.find(params[:id])
@@ -61,7 +66,7 @@ end
   private
 
   def yurt_params
-    params.require(:yurt).permit(:name, :description, :location, :daily_rate, :shape, :climate, :user_id, :photo_cache)
+    params.require(:yurt).permit(:name, :description, :location, :daily_rate, :shape, :climate, :user_id, :photo_cache, :photo)
   end
 
 end
