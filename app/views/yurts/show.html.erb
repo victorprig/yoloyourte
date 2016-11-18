@@ -22,10 +22,10 @@
         </div>
       </div>
       <% if @yurt.user_id == current_user.id %>
-        <div class="list-inline buttons-container">
-          <p><%= link_to "Rent my yurt", new_yurt_timeslot_path(@yurt), class: 'btn btn-primary full-width aligner'%></p>
-          <p><%= link_to "Edit your yurt", edit_yurt_path(@yurt), class: 'btn btn-primary full-width aligner'%></p>
-          <p><%= link_to "Delete the yurt", yurt_path(@yurt), class: 'btn btn-primary full-width aligner', method: :delete, data: { confirm: "Are you sure?" } %></p>
+        <div class="list-inline buttons-container" style="margin: 20px;">
+          <%= link_to "Rent my yurt", new_yurt_timeslot_path(@yurt), class: 'btn btn-info full-width aligner'%>
+          <%= link_to "Edit your yurt", edit_yurt_path(@yurt), class: 'btn btn-info full-width aligner'%>
+          <%= link_to "Delete the yurt", yurt_path(@yurt), class: 'btn btn-info full-width aligner', method: :delete, data: { confirm: "Are you sure?" } %>
         </div>
       <% end %>
     </div>
