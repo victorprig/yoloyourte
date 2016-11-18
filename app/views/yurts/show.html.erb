@@ -1,4 +1,4 @@
-<h2><%= @yurt.name %></h2>
+
 
 <% content_for(:after_js) do %>
   <%= javascript_tag do %>
@@ -9,10 +9,18 @@
   <% end %>
 <% end %>
 
-<div class="container">
+<div class="container padded2">
   <div class="row">
     <div class="col-xs-6">
-      <%= cl_image_tag @yurt.photo, height: 300, width: 400, crop: :fill %>
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(<%= cl_image_path @yurt.photo, height: 300, width: 500, crop: :scale %>);">
+        <div class="card-category">
+          <%= @yurt.shape %></h1>
+        </div>
+        <div class="card-description">
+          <h1><%= @yurt.location %></h1>
+          <h2><%= @yurt.climate %></h2>
+        </div>
+      </div>
       <% if @yurt.user_id == current_user.id %>
         <div class="list-inline buttons-container">
           <p><%= link_to "Rent my yurt", new_yurt_timeslot_path(@yurt), class: 'btn btn-primary full-width aligner'%></p>
@@ -22,6 +30,7 @@
       <% end %>
     </div>
     <div class="col-xs-6">
+      <h2><%= @yurt.name %></h2>
       <h4> <strong>Description: </strong> </h4>
       <p><%= @yurt.description %></p>
       <h4> <strong>Location: </strong> </h4>
